@@ -1,15 +1,11 @@
-// relationship.js
-// Handles the "pick two characters, see their relationship" flow.
-// The picker now shows two "slot" boxes for the characters you've
-// picked so far (each removable via an X), and the roster below is
-// split into 2nd/1st Generation like the Lore tab's select screen.
+
 
 window.COTA = window.COTA || {};
 
 COTA.relationship = (function () {
   let allCharacters = [];
   let allRelationships = [];
-  let slots = [null, null]; // character ids picked so far, by slot index
+  let slots = [null, null]; 
   let initialized = false;
 
   function rosterCardTemplate(c) {
@@ -41,8 +37,7 @@ COTA.relationship = (function () {
     });
   }
 
-  // Shows/hides a franchise-credit badge (e.g. Nijigasaki logo) for
-  // characters that are based on/credit an existing franchise.
+
   function setFranchiseBadge(elementId, character) {
     const el = document.getElementById(elementId);
     if (!el) return;
@@ -109,11 +104,10 @@ COTA.relationship = (function () {
     refreshRosterHighlight();
 
     if (slots[0] && slots[1]) {
-      // Second character picked — the pair is now complete.
       COTA.audio.playSfx("link.mp3");
       showRelationship(slots[0], slots[1]);
     } else {
-      // First character picked.
+
       COTA.audio.playSfx("switch.mp3");
       updateStatusText();
     }
@@ -151,8 +145,7 @@ COTA.relationship = (function () {
     window.setTimeout(() => display.classList.remove("fade-in"), 400);
   }
 
-  // Resets the whole picker (both slots) and shows the select screen.
-  // Called on "Link another pair!" AND every time the tab is (re-)entered.
+
   function resetToSelect() {
     slots = [null, null];
     renderSlots();
@@ -175,8 +168,7 @@ COTA.relationship = (function () {
     });
   }
 
-  // Called every time the Relationship tab is opened — always resets to
-  // the picker, never resumes a previously-shown pairing.
+
   async function enter() {
     await init();
     resetToSelect();
