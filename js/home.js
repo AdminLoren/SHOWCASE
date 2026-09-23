@@ -1,6 +1,3 @@
-// home.js
-// Renders the "Meet the Cast" preview strip on the Home tab.
-// Each card is a tiny snippet that links over to the Lore tab.
 
 window.COTA = window.COTA || {};
 
@@ -28,9 +25,7 @@ COTA.home = (function () {
         <span class="home-char-gen">${c.gen === 2 ? "2nd Gen" : "1st Gen"}</span>
       `;
       card.addEventListener("click", () => {
-        // Jump straight to this character's index page in the Lore tab —
-        // resetView: false so goToTab doesn't reset back to the select
-        // screen right after we open the character.
+
         COTA.app.goToTab("lore", { resetView: false });
         COTA.lore.openCharacterById(c.id);
       });
